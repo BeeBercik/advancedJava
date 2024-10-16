@@ -5,8 +5,11 @@ import pl.edu.wszib.car.rent.gui.GUIInterface;
 import pl.edu.wszib.car.rent.gui.GUIv2;
 
 public class Core {
-    private CarRepository carRepository = new CarRepository();
-    private GUIInterface gui = new GUIv2();
+    private CarRepository carRepository = CarRepository.getInstance();
+    private GUIInterface gui = GUIv2.getInstance();
+    private final static Core instance = new Core();
+
+    private Core() {}
 
     public void run() {
         boolean running = true;
@@ -27,5 +30,9 @@ public class Core {
                     break;
             }
         }
+    }
+
+    public static Core getInstance() {
+        return Core.instance;
     }
 }

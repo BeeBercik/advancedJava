@@ -7,8 +7,9 @@ import java.util.List;
 
 public class CarRepository {
     List<Car> cars = new ArrayList<>();
+    private static final CarRepository instance = new CarRepository();
 
-    public CarRepository() {
+    private CarRepository() {
         this.cars.add(new Car("Toyota", "Corolla",
                 2022, "Black", "KR11"));
         this.cars.add(new Car("BMW", "5",
@@ -33,5 +34,9 @@ public class CarRepository {
             }
         }
         return false;
+    }
+
+    public static CarRepository getInstance() {
+        return CarRepository.instance;
     }
 }

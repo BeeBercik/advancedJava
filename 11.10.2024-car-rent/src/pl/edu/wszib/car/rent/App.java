@@ -4,6 +4,6 @@ import pl.edu.wszib.car.rent.core.Core;
 
 public class App {
     public static void main(String[] args) {
-        new Core().run();
+        Core.getInstance().run();
     }
 }

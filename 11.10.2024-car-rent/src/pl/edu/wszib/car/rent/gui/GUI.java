@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 public class GUI implements GUIInterface {
     private Scanner scanner = new Scanner(System.in);
+    private final static GUI instance = new GUI();
+
+    private GUI() {}
 
     public String showMenuAndReadChoice() {
         System.out.println("1. List cars");
@@ -30,5 +33,9 @@ public class GUI implements GUIInterface {
 
     public void showResultMessage(boolean result) {
         System.out.println(result ? "Success" : "Error");
+    }
+
+    public static GUI getInstance() {
+        return GUI.instance;
     }
 }
