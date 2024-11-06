@@ -16,23 +16,11 @@ class Transaction {
         this.nonce = 0;
     }
 
-    public double getAmount() {
-        return amount;
-    }
-
     public String getLastTransaction() {
         return lastTransaction;
     }
 
-    public int getNonce() {
-        return nonce;
-    }
-
-    public void setNonce(int nonce) {
-        this.nonce = nonce;
-    }
-
-    public void increaseNounce() {
+    public void increaseNonce() {
         this.nonce++;
     }
 
@@ -40,17 +28,9 @@ class Transaction {
         this.lastTransaction = lastTransaction;
     }
 
-    public String generateObjString() {
-        return this.amount + this.lastTransaction + this.nonce;
-    }
-
     @Override
     public String toString() {
-        return "Transaction{" +
-                "amount=" + amount +
-                ", lastTransaction='" + lastTransaction + '\'' +
-                ", nonce=" + nonce +
-                '}';
+        return this.amount + this.lastTransaction + this.nonce;
     }
 }
 
@@ -62,28 +42,22 @@ public class App {
         byte[] randomBytes = new byte[16];
         App.random.nextBytes(randomBytes);
         String randomHash = Hex.encodeHexString(randomBytes);
-        System.out.println("Initial random hash: " + randomHash);
 
         for(int i = 0; i < 4; i++) {
-            double randomDouble = 0 + 100 * App.random.nextDouble();
-            double roundedDouble = Math.round(randomDouble * 100) / 100.0;
+            double roundedDouble = Math.round((0 + 100 * App.random.nextDouble()) * 100) / 100.0;
 
             Transaction transaction;
-            if(i > 0) {
-                String previousHash = App.transactions.get(i - 1).getLastTransaction();
-                transaction = new Transaction(roundedDouble, previousHash);
-            } else {
-                transaction = new Transaction(roundedDouble, randomHash);
-            }
+            if(i > 0) transaction = new Transaction(roundedDouble, App.transactions.get(i - 1).getLastTransaction());
+            else transaction = new Transaction(roundedDouble, randomHash);
 
             while (true) {
-                String hashedObjString = DigestUtils.md5Hex(transaction.generateObjString());
+                String hashedObjString = DigestUtils.md5Hex(transaction.toString());
                 if (hashedObjString.endsWith("00000")) {
                     transaction.setLastTransaction(hashedObjString);
                     App.transactions.add(transaction);
                     break;
                 }
-                transaction.increaseNounce();
+                transaction.increaseNonce();
             }
         }
         for(Transaction t : App.transactions) {
