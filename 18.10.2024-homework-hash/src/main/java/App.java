@@ -47,8 +47,7 @@ public class App {
             double roundedDouble = Math.round((0 + 100 * App.random.nextDouble()) * 100) / 100.0;
 
             Transaction transaction;
-            if(i > 0) transaction = new Transaction(roundedDouble, App.transactions.get(i - 1).getLastTransaction());
-            else transaction = new Transaction(roundedDouble, randomHash);
+            transaction = (i > 0) ? new Transaction(roundedDouble, App.transactions.get(i - 1).getLastTransaction()) : new Transaction(roundedDouble, randomHash);
 
             while (true) {
                 String hashedObjString = DigestUtils.md5Hex(transaction.toString());
