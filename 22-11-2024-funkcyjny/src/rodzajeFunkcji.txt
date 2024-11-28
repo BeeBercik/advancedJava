@@ -1,0 +1,37 @@
+Rodzaje funkcji Java
+Każdy z nich to interfejs funkcyjny z jedna metoda (to ja opisuje w podpunktach)
+
+Np w streamach jako lambda my podajemy definicje tych metod interfejsów	np jeśli metoda stream przyjmuje Predicate to lambda musi przedstawić ta funkcje boolean test(T t), czyli podajemy ciało przyjmujące 1 argument a zwracające boolean
+np. stream.filter((i) -> i > 5); jeśli zwróci true to takie i jest zapisywane w strumieniu który zostanie zwrócony.
+
+1. Zwykl. Funkcja
+Przyjmuje typ x i zwraca inny typ y
+WAZNE
+W dokumentacji Function to interface Function<T, R> bo 1szy typ to jaki przyjmuje a 2gi jaki zwraca: ma metole R apply(T t); która zwraca właśnie ten 2gi typ a przyjmuje 1szy
+
+Jeśli przyjmuje string a zwraca int to ok ale jeśli przyjmuje string i zwraca string (co też jest poprawne we Function) to bardziej poprawne stwierdzenie to unary operator
+
+2. Unary operator
+Przyjmuje taki sam typ parametru jaki zwraca np przyjmuje string X i zwraca typ string y
+
+3. Bi funkcja
+Przyjmuje dwa parametry dwóch różnych typów a zwraca jedna wartość jeszcze innego, trzeciego typu
+
+4. Predictat
+To metoda/funkcja która przyjmuje jeden argument i zwraca boolean
+
+5. Consumer
+Przyjmuje jakiś argument,  robi cos z nim i nic nie zwraca.
+
+6. Supplier
+Nie przyjmuje parametrów ale cos zwraca
+
+
+
+OPERATOR :: REFERENCJA DO FUNKCJI
+        Function<String, Integer> funcRef1 = s -> s.length();
+        Function<String, Integer> funcRef2 = String::length;
+
+Mozna go uzyc zamiast metody lambda, gdy nasza funkcja nie robi nic innego, tylko wywoluje inne funkcje
+Nie podajemy jawnie parametru, tylko wskazujemu, ze dla obiektow klasy String ma byc wywolywana ta funkcja (NIE wywolujemy jej, wskazujemy na nia, ze bedzie wyolywana)
+Wtedy tak samo w czasie kompilacji zamieniane na obiekt klasy anonimowej itd java widzi ze to implementacja tej wymaganej metody
