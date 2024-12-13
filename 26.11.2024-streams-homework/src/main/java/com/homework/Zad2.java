@@ -8,8 +8,7 @@ public class Zad2 {
 
         list.stream()
                 .map(i -> (i * i) + 9)
-                .map(String::valueOf)
-                .filter(i -> !i.contains("9"))
+                .filter(i -> !String.valueOf(i).contains("9"))
                 .forEach(System.out::println);
 
     }
