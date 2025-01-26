@@ -1,14 +1,9 @@
 package pl.edu.wszib.car.rent.jdbc.model;
 
-import lombok.*;
-
-@Getter
-@Setter
-@NoArgsConstructor
 public class Car extends Vehicle {
 
     public Car(String brand, String model, String color, String plate, int year) {
-        super(brand, model, color, plate, year, false);
+        super(brand, model, color, plate, year);
     }
 
     @Override

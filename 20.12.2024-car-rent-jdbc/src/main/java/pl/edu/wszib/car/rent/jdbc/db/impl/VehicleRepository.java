@@ -24,7 +24,7 @@ public class VehicleRepository implements IVehicleRepository {
                 2021, "Black", "KR666", 800));
     }
 
-    public boolean rentVehicle(String plate) {
+    public boolean rent(String plate) {
         return this.vehicles.stream()
                 .filter(v -> v.getPlate().equals(plate))
                 .filter(v -> !v.isRent())
@@ -33,7 +33,7 @@ public class VehicleRepository implements IVehicleRepository {
                 .isPresent();
     }
 
-    public List<Vehicle> getVehicles() {
+    public List<Vehicle> getAll() {
         return this.vehicles;
     }
 

@@ -1,4 +1,4 @@
-package pl.edu.wszib.car.rent.jdbc.db;
+package pl.edu.wszib.car.rent.jdbc.db.impl.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

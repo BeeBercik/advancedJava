@@ -1,7 +1,6 @@
 package pl.edu.wszib.car.rent.jdbc.gui.impl;
 
 import pl.edu.wszib.car.rent.jdbc.db.IVehicleRepository;
-import pl.edu.wszib.car.rent.jdbc.db.impl.VehicleRepository;
 import pl.edu.wszib.car.rent.jdbc.db.impl.sql.VehicleRepositorySQL;
 import pl.edu.wszib.car.rent.jdbc.gui.IGUI;
 import pl.edu.wszib.car.rent.jdbc.model.User;
@@ -9,7 +8,7 @@ import pl.edu.wszib.car.rent.jdbc.model.User;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private final static GUI instance = new GUI();
     private final IVehicleRepository vehicleRepository = VehicleRepositorySQL.getInstance();
 
@@ -24,7 +23,7 @@ public class GUI implements IGUI {
     }
 
     public void listVehicles() {
-        this.vehicleRepository.getVehicles().forEach(System.out::println);
+        this.vehicleRepository.getAll().forEach(System.out::println);
     }
 
     public String readPlate() {

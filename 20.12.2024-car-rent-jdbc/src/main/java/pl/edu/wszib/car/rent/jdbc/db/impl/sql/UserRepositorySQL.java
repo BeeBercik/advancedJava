@@ -1,7 +1,6 @@
 package pl.edu.wszib.car.rent.jdbc.db.impl.sql;
 
 import lombok.Getter;
-import pl.edu.wszib.car.rent.jdbc.db.Constants;
 import pl.edu.wszib.car.rent.jdbc.db.IUserRepository;
 import pl.edu.wszib.car.rent.jdbc.model.User;
 

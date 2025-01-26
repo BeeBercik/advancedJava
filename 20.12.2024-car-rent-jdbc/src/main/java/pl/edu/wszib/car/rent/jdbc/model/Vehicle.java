@@ -4,7 +4,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Vehicle {
     protected int id;
@@ -15,13 +14,13 @@ public class Vehicle {
     protected int year;
     protected boolean rent;
 
-    public Vehicle(String brand, String model, String color, String plate, int year, boolean rent) {
+    public Vehicle(String brand, String model, String color, String plate, int year) {
         this.brand = brand;
         this.model = model;
         this.color = color;
         this.plate = plate;
         this.year = year;
-        this.rent = rent;
+        this.rent = false;
     }
 
     @Override

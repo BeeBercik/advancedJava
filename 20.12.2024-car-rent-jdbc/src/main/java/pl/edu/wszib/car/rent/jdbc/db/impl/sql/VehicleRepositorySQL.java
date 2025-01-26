@@ -1,7 +1,6 @@
 package pl.edu.wszib.car.rent.jdbc.db.impl.sql;
 
 import lombok.Getter;
-import pl.edu.wszib.car.rent.jdbc.db.Constants;
 import pl.edu.wszib.car.rent.jdbc.db.IVehicleRepository;
 import pl.edu.wszib.car.rent.jdbc.model.Vehicle;
 
@@ -16,14 +15,14 @@ public class VehicleRepositorySQL implements IVehicleRepository {
     @Getter
     public static final VehicleRepositorySQL instance = new VehicleRepositorySQL();
 
-    private final String SQL_UPDATE = "UPDATE vehicles SET rent = true WHERE plate = ? AND rent = false";
-    private final String SQL_GET_ALL = "SELECT * FROM vehicles";
+    private final String SQL_UPDATE = "UPDATE cars SET rent = true WHERE plate = ? AND rent = false";
+    private final String SQL_GET_ALL = "SELECT * FROM cars";
 
     private VehicleRepositorySQL() {
     }
 
     @Override
-    public boolean rentVehicle(String plate) {
+    public boolean rent(String plate) {
         try(
                 PreparedStatement preparedStatement = Constants.CONNECTION.prepareStatement(this.SQL_UPDATE);) {
             preparedStatement.setString(1, plate);
@@ -39,7 +38,7 @@ public class VehicleRepositorySQL implements IVehicleRepository {
     }
 
     @Override
-    public List<Vehicle> getVehicles() {
+    public List<Vehicle> getAll() {
         try (Statement statement = Constants.CONNECTION.createStatement()) {
             List<Vehicle> vehicles = new ArrayList<>();
 
