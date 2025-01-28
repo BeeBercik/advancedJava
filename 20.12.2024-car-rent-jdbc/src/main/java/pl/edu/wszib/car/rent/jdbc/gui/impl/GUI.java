@@ -1,5 +1,6 @@
 package pl.edu.wszib.car.rent.jdbc.gui.impl;
 
+import lombok.Getter;
 import pl.edu.wszib.car.rent.jdbc.db.IVehicleRepository;
 import pl.edu.wszib.car.rent.jdbc.db.impl.sql.VehicleRepositorySQL;
 import pl.edu.wszib.car.rent.jdbc.gui.IGUI;
@@ -8,18 +9,20 @@ import pl.edu.wszib.car.rent.jdbc.model.User;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
-    private final Scanner scanner = new Scanner(System.in);
+    @Getter
     private final static GUI instance = new GUI();
+
+    private final Scanner scanner = new Scanner(System.in);
     private final IVehicleRepository vehicleRepository = VehicleRepositorySQL.getInstance();
 
     private GUI() {}
 
     public String showMenuAndReadChoice() {
-        System.out.println("1. List cars");
-        System.out.println("2. Rent cars");
+        System.out.println("1. List vehicles");
+        System.out.println("2. Rent vehicle");
         System.out.println("3. Exit");
 
-        return scanner.nextLine();
+        return this.scanner.nextLine();
     }
 
     public void listVehicles() {
@@ -28,7 +31,7 @@ public class GUI implements IGUI {
 
     public String readPlate() {
         System.out.println("Enter plate:");
-        return scanner.nextLine();
+        return this.scanner.nextLine();
     }
 
     public void showResultMessage(boolean result) {
@@ -38,14 +41,10 @@ public class GUI implements IGUI {
     @Override
     public User askForCredentials() {
         System.out.println("Enter login:");
-        String login = scanner.nextLine();
+        String login = this.scanner.nextLine();
         System.out.println("Enter password:");
-        String password = scanner.nextLine();
+        String password = this.scanner.nextLine();
 
         return new User(login, password);
-    }
-
-    public static GUI getInstance() {
-        return GUI.instance;
     }
 }

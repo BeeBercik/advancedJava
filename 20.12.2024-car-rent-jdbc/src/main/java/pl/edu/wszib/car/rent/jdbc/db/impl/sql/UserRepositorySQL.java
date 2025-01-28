@@ -40,11 +40,6 @@ public class UserRepositorySQL implements IUserRepository {
     }
 
     @Override
-    public void persist(User user) {
-
-    }
-
-    @Override
     public Optional<User> getUser(String login) {
         try(PreparedStatement ps = Constants.CONNECTION.prepareStatement(this.SQL_GET_USER_BY_LOGIN)) {
             ps.setString(1, login);

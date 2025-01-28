@@ -1,5 +1,6 @@
 package pl.edu.wszib.car.rent.jdbc.core.impl;
 
+import lombok.Getter;
 import pl.edu.wszib.car.rent.jdbc.authentication.IAuthenticator;
 import pl.edu.wszib.car.rent.jdbc.authentication.impl.Authenticator;
 import pl.edu.wszib.car.rent.jdbc.core.ICore;
@@ -9,10 +10,12 @@ import pl.edu.wszib.car.rent.jdbc.gui.impl.GUI;
 import pl.edu.wszib.car.rent.jdbc.gui.IGUI;
 
 public class Core implements ICore {
-    private IVehicleRepository vehicleRepository = VehicleRepositorySQL.getInstance();
-    private IGUI gui = GUI.getInstance();
-    private IAuthenticator authenticator = Authenticator.getInstance();
+    @Getter
     private final static Core instance = new Core();
+
+    private final IVehicleRepository vehicleRepository = VehicleRepositorySQL.getInstance();
+    private final IGUI gui = GUI.getInstance();
+    private final IAuthenticator authenticator = Authenticator.getInstance();
 
     private Core() {}
 
@@ -40,9 +43,5 @@ public class Core implements ICore {
                     break;
             }
         }
-    }
-
-    public static Core getInstance() {
-        return Core.instance;
     }
 }
