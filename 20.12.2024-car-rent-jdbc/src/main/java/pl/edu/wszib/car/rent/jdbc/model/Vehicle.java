@@ -5,6 +5,7 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Vehicle {
     protected int id;
     protected String brand;
@@ -14,19 +15,22 @@ public class Vehicle {
     protected int year;
     protected boolean rent;
 
-    public Vehicle(String brand, String model, String color, String plate, int year) {
+    public Vehicle(String brand, String model, String color, String plate, int year, boolean rent) {
         this.brand = brand;
         this.model = model;
         this.color = color;
         this.plate = plate;
         this.year = year;
-        this.rent = false;
+        this.rent = rent;
     }
 
     @Override
     public String toString() {
-        return new StringBuilder().append(this.getBrand() + " "  +
-                this.getModel() + " "  + this.getColor() + " " + this.getPlate() + " "  + this.getYear() + " " +
-                (this.isRent() ? "Not-available" : "Available")).toString();
+        return new StringBuilder().append(
+                this.getBrand() + " "  +
+                this.getModel() + " "  +
+                this.getColor() + " " + this.getPlate() + " "  + this.getYear() + " " +
+                (this.isRent() ? "Not-available" : "Available")
+        ).toString();
     }
 }

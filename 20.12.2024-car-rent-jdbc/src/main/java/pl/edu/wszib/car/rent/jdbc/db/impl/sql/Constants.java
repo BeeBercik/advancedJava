@@ -9,7 +9,7 @@ public interface Constants {
 
      static Connection connect() {
          try {
-             String url = "jdbc:mysql://localhost:3306/advanced_java";
+             String url = "jdbc:mysql://mysql-car-rent-jdbc:3306/advanced_java";
              String user = "root";
              String password = "";
 
