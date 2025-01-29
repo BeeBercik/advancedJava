@@ -15,8 +15,8 @@ public class CarRepositorySQL implements ICarRepository {
     @Getter
     public static final CarRepositorySQL instance = new CarRepositorySQL();
 
-    private final String SQL_GET_ALL_CARS = "SELECT * FROM trucks";
-    private final String SQL_UPDATE_CAR = "UPDATE trucks SET rent = true WHERE plate = ? AND rent = false";
+    private final String SQL_GET_ALL_CARS = "SELECT * FROM cars";
+    private final String SQL_UPDATE_CAR = "UPDATE cars SET rent = true WHERE plate = ? AND rent = false";
 
     private CarRepositorySQL() {}
 
@@ -26,26 +26,12 @@ public class CarRepositorySQL implements ICarRepository {
 
             preparedStatement.setString(1, plate);
             int updatedCarRows = preparedStatement.executeUpdate();
-            boolean renCatResult = updatedCarRows == 1;
 
-            if(renCatResult) return renCatResult;
-            else {
-                try(PreparedStatement preparedStatement2 = Constants.CONNECTION.prepareStatement(this.SQL_UPDATE_CAR);) {
-
-                    preparedStatement.setString(1, plate);
-                    int updatedTruckRows = preparedStatement.executeUpdate();
-
-                    return updatedTruckRows == 1;
-                } catch (SQLException e) {
-                    System.out.println("problem in RentVehicle");
-                    e.printStackTrace();
-                }
-            }
+            return updatedCarRows == 1;
         } catch (SQLException e) {
             System.out.println("problem in RentVehicle");
             e.printStackTrace();
         }
-
         return false;
     }
 

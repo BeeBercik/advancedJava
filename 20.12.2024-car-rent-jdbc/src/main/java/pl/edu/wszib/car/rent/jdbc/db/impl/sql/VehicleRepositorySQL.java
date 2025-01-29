@@ -17,8 +17,7 @@ public class VehicleRepositorySQL implements IVehicleRepository {
     private final ICarRepository carRepositorySQL = CarRepositorySQL.getInstance();
     private final ITruckRepository truckRepositorySQL = TruckRepositorySQL.getInstance();
 
-    private VehicleRepositorySQL() {
-    }
+    private VehicleRepositorySQL() {}
 
     @Override
     public boolean rent(String plate) {

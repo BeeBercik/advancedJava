@@ -21,8 +21,7 @@ public class Authenticator implements IAuthenticator {
 
     public boolean authenticate(User user) {
         Optional<User> userBox = this.userRepository.getUser(user.getLogin());
-
         return userBox.isPresent() &&
-                userBox.get().getPassword().equals(DigestUtils.md5Hex(user.getPassword()+seed));
+                userBox.get().getPassword().equals(DigestUtils.md5Hex(user.getPassword() + seed));
     }
 }

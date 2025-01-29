@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TruckRepositorySQL implements ITruckRepository {
+
     @Getter
     public static final TruckRepositorySQL instance = new TruckRepositorySQL();
 
@@ -26,26 +27,12 @@ public class TruckRepositorySQL implements ITruckRepository {
 
             preparedStatement.setString(1, plate);
             int updatedCarRows = preparedStatement.executeUpdate();
-            boolean renCatResult = updatedCarRows == 1;
 
-            if(renCatResult) return renCatResult;
-            else {
-                try(PreparedStatement preparedStatement2 = Constants.CONNECTION.prepareStatement(this.SQL_UPDATE_TRUCK);) {
-
-                    preparedStatement.setString(1, plate);
-                    int updatedTruckRows = preparedStatement.executeUpdate();
-
-                    return updatedTruckRows == 1;
-                } catch (SQLException e) {
-                    System.out.println("problem in RentVehicle");
-                    e.printStackTrace();
-                }
-            }
+            return updatedCarRows == 1;
         } catch (SQLException e) {
             System.out.println("problem in RentVehicle");
             e.printStackTrace();
         }
-
         return false;
     }
 
