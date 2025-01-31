@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz auta</title>
+</head>
+<body>
+  <form action="/carForm" method="post">
+    <input type="text" name="model" th:value="*{car.model}">
+    <input type="text" name="name" th:value="*{car.name}">
+    <input type="text" name="year" th:value="*{car.year}">
+    <input type="submit" value="Wyslij">
+  </form>
+</body>
+</html>

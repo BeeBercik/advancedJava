@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Imiona</title>
+</head>
+<body>
+  <p>Imiona</p>
+  <p th:text="${name}"></p>
+
+  <p>Wszystkie imiona</p>
+  <p th:each="name : ${allNames}" th:text="${name}"></p>
+
+  <p th:if="${name.equals('Weronika')}">Wylosowane imie jest damskie!</p>
+</body>
+</html>
